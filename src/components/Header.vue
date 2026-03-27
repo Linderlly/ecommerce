@@ -1,16 +1,21 @@
 <template>
   <header class="header">
-    <h1 class="logo" @click="goHome">Loja Tech</h1>
+    <h1 @click="goHome">Loja Tech</h1>
 
-    <nav>
+    <div>
+      <button @click="toggleTheme">
+        {{ darkMode ? '☀️' : '🌙' }}
+      </button>
+
       <button @click="goProducts">Produtos</button>
-      <button @click="goCart">Carrinho 🛒</button>
-    </nav>
+      <button @click="goCart">🛒 ({{ cart.length }})</button>
+    </div>
   </header>
 </template>
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import { darkMode, cart } from '../store/store'
 
 const router = useRouter()
 
@@ -25,25 +30,23 @@ function goProducts() {
 function goCart() {
   router.push('/cart')
 }
+
+function toggleTheme() {
+  darkMode.value = !darkMode.value
+}
 </script>
 
 <style scoped>
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background: #222;
-  color: white;
   padding: 15px;
-}
-
-.logo {
-  cursor: pointer;
+  background: #2563eb;
+  color: white;
+  flex-wrap: wrap;
 }
 
 button {
-  margin-left: 10px;
-  padding: 8px;
-  cursor: pointer;
+  margin: 5px;
 }
 </style>

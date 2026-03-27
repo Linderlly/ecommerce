@@ -1,58 +1,114 @@
 <template>
-  <div>
+  <div class="cart">
     <h1>Carrinho</h1>
 
-    <CartItem
-      v-for="item in cart"
-      :key="item.id"
-      :item="item"
-      @increase="increase"
-      @decrease="decrease"
-      @remove="remove"
-    />
+    <div v-if="cart.length === 0" class="empty">
+      <p>Seu carrinho está vazio 😢</p>
+    </div>
 
-    <h2>Total: R$ {{ total }}</h2>
+    <div v-else>
+      <div class="item" v-for="item in cart" :key="item.id">
+        <img :src="item.image" />
 
-    <button @click="goCheckout">Finalizar compra</button>
+        <div class="info">
+          <h3>{{ item.name }}</h3>
+          <p>R$ {{ item.price }}</p>
+
+          <div class="controls">
+            <button @click="decrease(item.id)">-</button>
+            <span>{{ item.quantity }}</span>
+            <button @click="increase(item.id)">+</button>
+          </div>
+
+          <button class="remove" @click="remove(item.id)">
+            Remover
+          </button>
+        </div>
+      </div>
+
+      <div class="total">
+        <h2>Total: R$ {{ total }}</h2>
+        <button class="checkout">Finalizar compra</button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import CartItem from '../components/CartItem.vue'
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
-
-const cart = ref([
-  {
-    id: 1,
-    name: "Notebook Gamer",
-    price: 4500,
-    image: "https://via.placeholder.com/100",
-    quantity: 1
-  }
-])
+import { cart, increaseQuantity, decreaseQuantity, removeFromCart } from '../store/store'
+import { computed } from 'vue'
 
 function increase(id: number) {
-  const item = cart.value.find(i => i.id === id)
-  if (item) item.quantity++
+  increaseQuantity(id)
 }
 
 function decrease(id: number) {
-  const item = cart.value.find(i => i.id === id)
-  if (item && item.quantity > 1) item.quantity--
+  decreaseQuantity(id)
 }
 
 function remove(id: number) {
-  cart.value = cart.value.filter(i => i.id !== id)
+  removeFromCart(id)
 }
 
 const total = computed(() =>
   cart.value.reduce((sum, item) => sum + item.price * item.quantity, 0)
 )
-
-function goCheckout() {
-  router.push('/checkout')
-}
 </script>
+
+<style scoped>
+.cart {
+  padding: 20px;
+}
+
+.empty {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 18px;
+}
+
+.item {
+  display: flex;
+  gap: 15px;
+  background: white;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  align-items: center;
+}
+
+img {
+  width: 90px;
+  border-radius: 8px;
+}
+
+.info {
+  flex: 1;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.controls button {
+  padding: 5px 10px;
+  font-size: 16px;
+}
+
+.remove {
+  background: #ef4444;
+  margin-top: 5px;
+}
+
+.checkout {
+  margin-top: 10px;
+  background: #22c55e;
+}
+
+.total {
+  text-align: right;
+  margin-top: 20px;
+}
+</style>

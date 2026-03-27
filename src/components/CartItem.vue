@@ -35,12 +35,17 @@ defineProps<{
 .cart-item {
   display: flex;
   gap: 15px;
-  border-bottom: 1px solid #ccc;
-  padding: 10px;
+  background: white;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 10px;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 img {
   width: 80px;
+  border-radius: 8px;
 }
 
 .controls {
@@ -50,8 +55,7 @@ img {
 }
 
 .remove {
-  margin-top: 10px;
-  background: red;
+  background: #ef4444;
   color: white;
 }
 </style>
