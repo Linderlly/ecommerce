@@ -13,8 +13,12 @@ import { darkMode } from './store/store'
 <style>
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Exo 2', 'Segoe UI', sans-serif;
   background-color: #f1f5f9;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Orbitron', 'Exo 2', sans-serif;
 }
 
 .dark {
@@ -53,7 +57,8 @@ button:hover {
   color: white;
 }
 
-input, select {
+input:not(.filter-control),
+select:not(.filter-control) {
   margin: 10px 20px;
   padding: 10px;
   border-radius: 8px;

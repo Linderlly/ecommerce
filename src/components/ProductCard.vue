@@ -51,6 +51,9 @@ const isFav = computed(() =>
   text-align: center;
   box-shadow: 0 6px 18px rgba(0,0,0,0.1);
   transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .card:hover {
@@ -59,8 +62,14 @@ const isFav = computed(() =>
 
 img {
   width: 100%;
+  height: 250px;
+  object-fit: contain;
   border-radius: 10px;
   margin-bottom: 10px;
+}
+
+h3 {
+  margin: 0 0 10px;
 }
 
 .price {
@@ -73,6 +82,7 @@ img {
   display: flex;
   justify-content: space-between;
   gap: 8px;
+  margin-top: auto;
 }
 
 /* BOTÃO VER */
@@ -109,6 +119,10 @@ img {
 
 /* RESPONSIVO */
 @media (max-width: 500px) {
+  img {
+    height: 220px;
+  }
+
   .actions {
     flex-direction: column;
   }
