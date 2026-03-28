@@ -28,7 +28,7 @@
 
       <div class="total">
         <h2>Total: {{ formatPrice(total) }}</h2>
-        <button class="checkout">Finalizar compra</button>
+        <button class="checkout" @click="goToCheckout">Finalizar compra</button>
       </div>
     </div>
   </div>
@@ -37,6 +37,9 @@
 <script setup lang="ts">
 import { cart, increaseQuantity, decreaseQuantity, removeFromCart } from '../store/store'
 import { computed } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 function increase(id: number) {
   increaseQuantity(id)
@@ -53,6 +56,10 @@ function remove(id: number) {
 const total = computed(() =>
   cart.value.reduce((sum, item) => sum + item.price * item.quantity, 0)
 )
+
+function goToCheckout() {
+  router.push('/checkout')
+}
 
 function formatPrice(value: number) {
   return value.toLocaleString('pt-BR', {
