@@ -207,4 +207,24 @@ function toggleTheme() {
     min-width: 0;
   }
 }
+
+.menu-btn:active {
+  transform: scale(0.9);
+}
+
+/* Transição mais suave */
+.menu-btn {
+  transition: all 0.25s ease;
+}
+
+@media (max-width: 500px) {
+  .menu {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-btn {
+    height: 38px;
+    font-size: 13px;
+  }
+}
 </style>

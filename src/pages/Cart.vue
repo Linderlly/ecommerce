@@ -124,4 +124,68 @@ img {
 .total h2 {
   font-family: 'Exo 2', 'Segoe UI', sans-serif;
 }
+
+.item {
+  transition: all 0.3s ease;
+}
+
+.item:hover {
+  transform: scale(1.02);
+}
+
+button {
+  transition: transform 0.2s ease;
+}
+
+button:active {
+  transform: scale(0.9);
+}
+.dark .cart {
+  color: white;
+}
+
+.dark .item {
+  background: #1e293b;
+}
+
+.dark .info h3,
+.dark .info p {
+  color: #e2e8f0;
+}
+
+.dark .total h2 {
+  color: #f1f5f9;
+}
+
+.dark .controls button {
+  background: #334155;
+  color: white;
+}
+
+.dark .remove {
+  background: #dc2626;
+}
+
+.dark .checkout {   
+  background: #16a34a;
+}
+
+@media (max-width: 600px) {
+  .item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .total {
+    text-align: center;
+  }
+
+  .checkout {
+    width: 100%;
+  }
+}
 </style>

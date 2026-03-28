@@ -80,4 +80,47 @@ select:not(.filter-control) {
     padding: 30px;
   }
 }
+
+.app-shell {
+  animation: fadeApp 0.5s ease;
+}
+
+@keyframes fadeApp {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+button {
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 400px) {
+  .grid {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+}
+
+.banner {
+  animation: bannerFade 0.8s ease;
+}
+
+@keyframes bannerFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 </style>

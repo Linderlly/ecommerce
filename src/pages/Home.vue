@@ -145,4 +145,77 @@ function goToProduct(id: number) {
     min-width: 100%;
   }
 }
+
+.banner {
+  animation: fadeBanner 0.8s ease;
+}
+
+@keyframes fadeBanner {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.filters {
+  animation: fadeFilters 0.6s ease;
+}
+
+@keyframes fadeFilters {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+input, select {
+  transition: transform 0.2s ease;
+}
+
+input:active,
+select:active {
+  transform: scale(0.98);
+}
+
+.dark .banner {
+  background: linear-gradient(90deg, #1e3a8a, #1d4ed8);
+}
+
+.dark .filter-control {
+  background: #1e293b;
+  color: #e2e8f0;
+  border-color: #334155;
+}
+
+.dark .filter-control::placeholder {
+  color: #94a3b8;
+}
+
+.dark .control-icon {
+  color: #94a3b8;
+}
+
+.dark .select-wrap::after {
+  color: #94a3b8;
+}
+
+.dark .filter-control:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+}
+
+@media (max-width: 400px) {
+  .filter-control {
+    font-size: 13px;
+    height: 42px;
+  }
+}
 </style>

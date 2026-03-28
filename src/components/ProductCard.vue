@@ -137,7 +137,6 @@ h3 {
   margin-top: auto;
 }
 
-/* BOTÃO VER */
 .view {
   flex: 1;
   background: #2563eb;
@@ -148,7 +147,6 @@ h3 {
   background: #1d4ed8;
 }
 
-/* BOTÃO CARRINHO */
 .cart {
   background: #22c55e;
   width: 45px;
@@ -158,7 +156,6 @@ h3 {
   background: #16a34a;
 }
 
-/* BOTÃO FAVORITO */
 .fav {
   background: #f1f5f9;
   color: red;
@@ -169,7 +166,6 @@ h3 {
   background: #ffe4e6;
 }
 
-/* RESPONSIVO */
 @media (max-width: 500px) {
   img {
     height: 220px;
@@ -181,6 +177,92 @@ h3 {
 
   .cart, .fav {
     width: 100%;
+  }
+}
+
+.card {
+  animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+button {
+  transition: transform 0.2s ease;
+}
+
+button:active {
+  transform: scale(0.9);
+}
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+}
+
+.dark .card {
+  background: #1e293b;
+  color: #e2e8f0;
+}
+
+.dark h3 {
+  color: #f1f5f9;
+}
+
+.dark .price {
+  color: #60a5fa;
+}
+
+.dark .old-price {
+  color: #94a3b8;
+}
+
+.dark .shipping {
+  color: #4ade80;
+}
+
+.dark .discount-badge {
+  background: #14532d;
+  color: #bbf7d0;
+  border-color: #166534;
+}
+
+/* Botões no dark */
+.dark .view {
+  background: #1d4ed8;
+}
+
+.dark .cart {
+  background: #16a34a;
+}
+
+.dark .fav {
+  background: #334155;
+  color: #f87171;
+}
+
+.dark .card:hover {
+  box-shadow: 0 12px 28px rgba(0,0,0,0.5);
+}
+
+@media (max-width: 400px) {
+  h3 {
+    font-size: 14px;
+  }
+
+  .price {
+    font-size: 14px;
   }
 }
 </style>

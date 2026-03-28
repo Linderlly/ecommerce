@@ -58,4 +58,36 @@ img {
   background: #ef4444;
   color: white;
 }
+
+/* ========================= */
+/* 🔥 ADIÇÕES (NÃO ALTERA NADA) */
+/* ========================= */
+
+.cart-item {
+  transition: all 0.3s ease;
+}
+
+.cart-item:hover {
+  transform: scale(1.02);
+}
+
+button {
+  transition: transform 0.2s ease;
+}
+
+button:active {
+  transform: scale(0.9);
+}
+
+/* RESPONSIVO */
+@media (max-width: 600px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  img {
+    width: 100%;
+  }
+}
 </style>

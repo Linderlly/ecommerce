@@ -141,4 +141,54 @@ function goToProduct(id: number) {
     min-width: 100%;
   }
 }
+
+.container {
+  animation: fadePage 0.6s ease;
+}
+
+@keyframes fadePage {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.filters {
+  animation: fadeFilters 0.5s ease;
+}
+
+@keyframes fadeFilters {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+input, select {
+  transition: transform 0.2s ease;
+}
+
+input:active,
+select:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 400px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  .filter-control {
+    font-size: 13px;
+    height: 42px;
+  }
+}
 </style>

@@ -303,4 +303,105 @@ h1 {
     min-width: 0;
   }
 }
+
+.detail-page {
+  animation: fadePage 0.6s ease;
+}
+
+@keyframes fadePage {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.detail-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.detail-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.1);
+}
+
+.buy-btn {
+  transition: transform 0.2s ease;
+}
+
+.buy-btn:active {
+  transform: scale(0.95);
+}
+
+.dark .media-panel,
+.dark .info-panel,
+.dark .detail-card {
+  background: #1e293b;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+.dark h1 {
+  color: #f1f5f9;
+}
+
+.dark .description,
+.dark .headline {
+  color: #cbd5f5;
+}
+
+.dark .price-value {
+  color: #60a5fa;
+}
+
+.dark .old-price {
+  color: #94a3b8;
+}
+
+.dark .shipping {
+  color: #4ade80;
+}
+
+.dark .discount-badge {
+  background: #14532d;
+  color: #bbf7d0;
+  border-color: #166534;
+}
+
+.dark .category-chip {
+  background: #1e40af;
+  color: #bfdbfe;
+  border-color: #1d4ed8;
+}
+
+.dark .buy-btn {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+}
+
+.dark .buy-btn:hover {
+  background: linear-gradient(135deg, #1e40af, #1d4ed8);
+}
+
+.dark .description,
+.dark .detail-card p,
+.dark .detail-card li {
+  color: #e2e8f0;
+}
+
+.dark .detail-card h2 {
+  color: #f1f5f9;
+}
+
+@media (max-width: 400px) {
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  .price-value {
+    font-size: 1.5rem;
+  }
+}
 </style>
