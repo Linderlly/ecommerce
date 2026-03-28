@@ -1,3 +1,6 @@
+import nintendoImage from '../assets/nintendo.png'
+import tvImage from '../assets/tv.png'
+
 export interface Product {
   id: number
   name: string
@@ -41,7 +44,7 @@ export const products: Product[] = [
     id: 4,
     name: "Bundle Nintendo Switch 2 + Jogo Digital Mario Kart World – Modelo Nacional de Tomada",
     price: 4349,
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwxiyylcDjyw8lzTbIQylpGMCiAGw1dctm4w&s",
+    image: nintendoImage,
     description: "Console de jogos",
     category: "Tecnologia"
   },
@@ -51,7 +54,7 @@ export const products: Product[] = [
     price: 3105,
     discountPercent: 15,
     freeShipping: true,
-    image: "https://m.media-amazon.com/images/I/616l6zgYapL._AC_SY450_.jpg",
+    image: tvImage,
     description: "TV inteligente com qualidade de imagem superior",
     category: "Tecnologia"
   }
