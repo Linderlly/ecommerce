@@ -1,16 +1,23 @@
 import { ref } from 'vue'
+import { getProductFinalPrice } from '../utils/pricing'
 
 export const cart = ref<any[]>([])
 export const favorites = ref<number[]>([])
 export const darkMode = ref(false)
 
 export function addToCart(product: any) {
+  const normalizedProduct = {
+    ...product,
+    price: getProductFinalPrice(product)
+  }
+
   const item = cart.value.find(p => p.id === product.id)
 
   if (item) {
+    item.price = normalizedProduct.price
     item.quantity++
   } else {
-    cart.value.push({ ...product, quantity: 1 })
+    cart.value.push({ ...normalizedProduct, quantity: 1 })
   }
 }
 

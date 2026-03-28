@@ -12,7 +12,7 @@
 
         <div class="info">
           <h3>{{ item.name }}</h3>
-          <p>R$ {{ item.price }}</p>
+          <p>{{ formatPrice(item.price) }}</p>
 
           <div class="controls">
             <button @click="decrease(item.id)">-</button>
@@ -27,7 +27,7 @@
       </div>
 
       <div class="total">
-        <h2>Total: R$ {{ total }}</h2>
+        <h2>Total: {{ formatPrice(total) }}</h2>
         <button class="checkout">Finalizar compra</button>
       </div>
     </div>
@@ -53,6 +53,15 @@ function remove(id: number) {
 const total = computed(() =>
   cart.value.reduce((sum, item) => sum + item.price * item.quantity, 0)
 )
+
+function formatPrice(value: number) {
+  return value.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  })
+}
 </script>
 
 <style scoped>
@@ -110,5 +119,9 @@ img {
 .total {
   text-align: right;
   margin-top: 20px;
+}
+
+.total h2 {
+  font-family: 'Exo 2', 'Segoe UI', sans-serif;
 }
 </style>

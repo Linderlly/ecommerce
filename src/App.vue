@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ dark: darkMode }">
+  <div class="app-shell" :class="{ dark: darkMode }">
     <Header />
     <router-view />
   </div>
@@ -14,6 +14,15 @@ import { darkMode } from './store/store'
 body {
   margin: 0;
   font-family: 'Exo 2', 'Segoe UI', sans-serif;
+  background-color: #f1f5f9;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+.app-shell {
+  min-height: 100vh;
   background-color: #f1f5f9;
 }
 

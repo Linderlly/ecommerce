@@ -3,9 +3,18 @@
     <img :src="product.image" />
 
     <h3>{{ product.name }}</h3>
-    <p class="price">
-      R$ {{ product.price.toLocaleString('pt-BR') }}
-    </p>
+    <div class="price-block">
+      <p v-if="hasDiscount" class="old-price">
+        {{ formatBRL(product.price) }}
+      </p>
+
+      <div class="price-line">
+        <span v-if="hasDiscount" class="discount-badge">{{ product.discountPercent }}% OFF</span>
+        <p class="price">{{ formatBRL(finalPrice) }}</p>
+      </div>
+
+      <p v-if="product.freeShipping" class="shipping">Frete grátis</p>
+    </div>
 
     <div class="actions">
       <button class="view" @click="$emit('view', product.id)">
@@ -27,6 +36,7 @@
 import type { Product } from '../data/products'
 import { addToCart, toggleFavorite, favorites } from '../store/store'
 import { computed } from 'vue'
+import { getProductFinalPrice, formatBRL } from '../utils/pricing'
 
 const props = defineProps<{ product: Product }>()
 
@@ -37,6 +47,12 @@ function add() {
 function fav() {
   toggleFavorite(props.product.id)
 }
+
+const finalPrice = computed(() => getProductFinalPrice(props.product))
+
+const hasDiscount = computed(() =>
+  typeof props.product.discountPercent === 'number' && props.product.discountPercent > 0
+)
 
 const isFav = computed(() =>
   favorites.value.includes(props.product.id)
@@ -70,12 +86,48 @@ img {
 
 h3 {
   margin: 0 0 10px;
+  color: #0f172a;
 }
 
 .price {
   font-weight: bold;
   color: #2563eb;
+  margin: 0;
+}
+
+.price-block {
   margin-bottom: 12px;
+}
+
+.old-price {
+  margin: 0 0 6px;
+  color: #64748b;
+  text-decoration: line-through;
+  font-size: 0.92rem;
+}
+
+.price-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.discount-badge {
+  background: #bbf7d0;
+  color: #166534;
+  border: 1px solid #86efac;
+  font-size: 0.75rem;
+  font-weight: 800;
+  border-radius: 6px;
+  padding: 3px 7px;
+}
+
+.shipping {
+  margin: 6px 0 0;
+  color: #16a34a;
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
 .actions {

@@ -13,8 +13,18 @@
         <p class="headline">{{ specs.headline }}</p>
 
         <div class="price-row">
-          <span class="price-label">Preco</span>
-          <strong class="price-value">R$ {{ product.price.toLocaleString('pt-BR') }}</strong>
+          <span class="price-label">Preço</span>
+
+          <p v-if="hasDiscount" class="old-price">
+            {{ formatBRL(product.price) }}
+          </p>
+
+          <div class="price-line">
+            <span v-if="hasDiscount" class="discount-badge">{{ product.discountPercent }}% OFF</span>
+            <strong class="price-value">{{ formatBRL(finalPrice) }}</strong>
+          </div>
+
+          <p v-if="product.freeShipping" class="shipping">Frete Gratis</p>
         </div>
 
         <button class="buy-btn" @click="addToCart(product)">Adicionar ao carrinho</button>
@@ -51,8 +61,8 @@
   </div>
 
   <div v-else class="not-found">
-    <h2>Produto nao encontrado</h2>
-    <p>Esse item pode ter sido removido ou nao existe mais.</p>
+    <h2>Produto não encontrado</h2>
+    <p>Esse item pode ter sido removido ou não existe mais.</p>
   </div>
 </template>
 
@@ -62,9 +72,18 @@ import { useRoute } from 'vue-router'
 import { products } from '../data/products'
 import { addToCart } from '../store/store'
 import { productSpecsById } from '../data/productSpecs'
+import { getProductFinalPrice, formatBRL } from '../utils/pricing'
 
 const route = useRoute()
 const product = products.find(p => p.id === Number(route.params.id))
+
+const finalPrice = computed(() =>
+  product ? getProductFinalPrice(product) : 0
+)
+
+const hasDiscount = computed(() =>
+  !!product && typeof product.discountPercent === 'number' && product.discountPercent > 0
+)
 
 const specs = computed(() => {
   if (product && productSpecsById[product.id]) {
@@ -156,6 +175,28 @@ h1 {
   gap: 6px;
 }
 
+.old-price {
+  margin: 0;
+  color: #64748b;
+  text-decoration: line-through;
+}
+
+.price-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.discount-badge {
+  background: #bbf7d0;
+  color: #166534;
+  border: 1px solid #86efac;
+  font-size: 0.78rem;
+  font-weight: 800;
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
 .price-label {
   font-size: 0.85rem;
   text-transform: uppercase;
@@ -166,6 +207,12 @@ h1 {
 .price-value {
   font-size: clamp(1.8rem, 2.1vw, 2.3rem);
   color: #1d4ed8;
+}
+
+.shipping {
+  margin: 0;
+  color: #16a34a;
+  font-weight: 700;
 }
 
 .buy-btn {

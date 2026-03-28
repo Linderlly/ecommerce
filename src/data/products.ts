@@ -2,6 +2,8 @@ export interface Product {
   id: number
   name: string
   price: number
+  discountPercent?: number
+  freeShipping?: boolean
   image: string
   description: string
   category: string
@@ -20,6 +22,7 @@ export const products: Product[] = [
     id: 2,
     name: "Apple iPhone 17 Pro Max (256 GB) - Laranja cósmico",
     price: 11249,
+    discountPercent: 10,
     image: "https://m.media-amazon.com/images/I/51k0qRQFcuL._AC_SX342_SY445_QL70_ML2_.jpg",
     description: "Celular moderno",
     category: "Tecnologia"
@@ -28,6 +31,8 @@ export const products: Product[] = [
     id: 3,
     name: "PlayStation®5 Slim Digital 825GB – Pacote ASTRO BOT e Gran Turismo 7",
     price: 3523,
+    discountPercent: 8,
+    freeShipping: true,
     image: "https://m.media-amazon.com/images/I/71WCygaQDAL._AC_SX679_.jpg",
     description: "Console de jogos",
     category: "Tecnologia"
@@ -44,6 +49,8 @@ export const products: Product[] = [
     id: 5,
     name: "Samsung Vision AI TV 55 QLED ULTRA 4K QEF1 2025",
     price: 3105,
+    discountPercent: 15,
+    freeShipping: true,
     image: "https://m.media-amazon.com/images/I/616l6zgYapL._AC_SY450_.jpg",
     description: "TV inteligente com qualidade de imagem superior",
     category: "Tecnologia"
